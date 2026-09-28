@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f6f2">
+  <title>People Directory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Fieldnote home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        <span class="brand-name">fieldnote<span class="brand-period">.</span></span>
+      </a>
+
+      <div class="workspace-switcher">
+        <span class="workspace-avatar">F</span>
+        <span class="workspace-copy"><strong>Fieldwork Studio</strong><small>Workspace</small></span>
+        <svg class="icon switcher-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
+      </div>
+
+      <div class="nav-label">WORKSPACE</div>
+      <nav aria-label="Workspace navigation">
+        <a class="nav-link is-active" href="/" aria-current="page">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 20v-1.5a5.5 5.5 0 0 1 11 0V20M16 5.5a3 3 0 0 1 0 5.8M18 14a5 5 0 0 1 2.5 4.5V20"/></svg>
+          <span>People</span><span class="nav-count" id="nav-count">0</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-rule"></div>
+        <div class="service-status"><span class="status-dot"></span><span>API available</span></div>
+        <div class="user-profile">
+          <span class="profile-avatar">AM</span>
+          <span class="profile-copy"><strong>Alex Morgan</strong><small>Administrator</small></span>
+          <button class="icon-button profile-menu" type="button" aria-label="Account options" title="Account options">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Workspace</span><svg class="icon crumb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><strong>People</strong></div>
+        <div class="topbar-actions">
+          <span class="today-label" id="today-label"></span>
+          <span class="topbar-divider"></span>
+          <button class="icon-button help-button" type="button" aria-label="Help" title="Help">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.2 1.8c-1.2 1-1.8 1.3-1.8 2.7M12 17h.01"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="page-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span>YOUR ORGANIZATION</div>
+            <h1>People directory<span class="heading-period">.</span></h1>
+            <p class="page-subtitle">The people who make the work happen.</p>
+          </div>
+          <button class="primary-button" id="add-employee" type="button">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            <span>Add person</span>
+          </button>
+        </section>
+
+        <section class="overview" aria-label="Directory overview">
+          <article class="stat-block stat-people">
+            <span class="stat-label">PEOPLE</span>
+            <div class="stat-value-row"><strong class="stat-value" id="stat-people">—</strong><span class="stat-mark people-mark" aria-hidden="true"></span></div>
+            <span class="stat-caption">in your directory</span>
+          </article>
+          <article class="stat-block stat-departments">
+            <span class="stat-label">DEPARTMENTS</span>
+            <div class="stat-value-row"><strong class="stat-value" id="stat-departments">—</strong><span class="stat-mark departments-mark" aria-hidden="true"></span></div>
+            <span class="stat-caption">across the organization</span>
+          </article>
+          <article class="stat-block stat-largest">
+            <span class="stat-label">LARGEST TEAM</span>
+            <div class="stat-value-row"><strong class="stat-value stat-largest-value" id="stat-largest">—</strong><span class="stat-mark largest-mark" aria-hidden="true"></span></div>
+            <span class="stat-caption" id="stat-largest-caption">by headcount</span>
+          </article>
+          <div class="overview-note"><span class="overview-note-mark">↗</span><span>A little more<br>human, every day.</span></div>
+        </section>
+
+        <section class="directory-section" aria-labelledby="directory-title">
+          <div class="directory-heading">
+            <div class="directory-title-group">
+              <h2 id="directory-title">All people</h2>
+              <span class="result-count" id="result-count">0</span>
+            </div>
+            <div class="table-tools">
+              <label class="search-field">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.2 4.2"/></svg>
+                <input id="search-input" type="search" placeholder="Search people" autocomplete="off" aria-label="Search employees">
+                <kbd>/</kbd>
+              </label>
+              <label class="filter-field">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10m-7 5h4"/></svg>
+                <select id="department-filter" aria-label="Filter by department">
+                  <option value="">All departments</option>
+                </select>
+              </label>
+              <button class="icon-button refresh-button" id="refresh-button" type="button" aria-label="Refresh directory" title="Refresh directory">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.6 9a7 7 0 0 1 11.7-2L20 12M4 12l2.7 5a7 7 0 0 0 11.7-2"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-wrap" id="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col" class="person-heading">PERSON</th>
+                  <th scope="col">DEPARTMENT</th>
+                  <th scope="col">EMAIL ADDRESS</th>
+                  <th scope="col" class="id-heading">ID</th>
+                  <th scope="col" class="actions-heading"><span class="sr-only">Actions</span></th>
+                </tr>
+              </thead>
+              <tbody id="employee-rows"></tbody>
+            </table>
+            <div class="empty-state" id="empty-state" hidden>
+              <div class="empty-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20v-1.5a5.5 5.5 0 0 1 11 0V20M17 9h5m-2.5-2.5v5"/></svg></div>
+              <h3 id="empty-title">A fresh page</h3>
+              <p id="empty-copy">Add the first person to your directory.</p>
+              <button class="text-button" id="empty-add" type="button">Add a person <span aria-hidden="true">↗</span></button>
+            </div>
+          </div>
+          <footer class="table-footer"><span id="table-footer-label">Showing 0 people</span><span class="data-source"><span class="source-dot"></span>Synced with organization data</span></footer>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="employee-dialog" id="employee-dialog" aria-labelledby="dialog-title">
+    <form id="employee-form" novalidate>
+      <div class="dialog-topline"><span class="eyebrow"><span class="eyebrow-line"></span>PEOPLE DIRECTORY</span><button class="icon-button close-dialog" type="button" aria-label="Close dialog" title="Close"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+      <h2 id="dialog-title">Add a person</h2>
+      <p class="dialog-subtitle" id="dialog-subtitle">A few details, and they're in.</p>
+      <input id="employee-id" type="hidden">
+      <label class="form-label" for="employee-name">Full name<span class="required-mark">*</span></label>
+      <input class="form-input" id="employee-name" name="name" placeholder="e.g. Ada Lovelace" required maxlength="120" autocomplete="name">
+      <label class="form-label" for="employee-email">Work email<span class="required-mark">*</span></label>
+      <input class="form-input" id="employee-email" name="email" type="email" placeholder="name@company.com" required maxlength="180" autocomplete="email">
+      <label class="form-label" for="employee-department">Department<span class="required-mark">*</span></label>
+      <input class="form-input" id="employee-department" name="department" placeholder="e.g. Design" required maxlength="100" list="department-options" autocomplete="organization-title">
+      <datalist id="department-options"></datalist>
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+      <div class="dialog-actions"><button class="secondary-button cancel-dialog" type="button">Cancel</button><button class="primary-button submit-button" id="submit-button" type="submit"><span>Save person</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+    </form>
+  </dialog>
+
+  <dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title">
+    <div class="confirm-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16m-10 4v6m4-6v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></div>
+    <h2 id="confirm-title">Remove this person?</h2>
+    <p id="confirm-copy">This record will be permanently deleted.</p>
+    <div class="dialog-actions"><button class="secondary-button cancel-delete" type="button">Keep person</button><button class="danger-button" id="confirm-delete" type="button">Remove person</button></div>
+  </dialog>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
